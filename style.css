@@ -39,6 +39,11 @@ html, body {
 
 a { color: var(--accent-700); text-decoration: none; }
 a:hover { color: var(--accent-800); text-decoration: underline; }
+a:focus-visible {
+  outline: 3px solid #facc15;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
 
 code {
   font-family: var(--font-mono);
@@ -229,15 +234,17 @@ h2 {
 .prose + .prose { margin-top: 1rem; }
 
 .grid { display: grid; gap: 1rem; margin-top: 2rem; }
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
-@media (max-width: 900px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .grid-3 { grid-template-columns: 1fr; } }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 900px) { .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .grid-3 { grid-template-columns: minmax(0, 1fr); } }
 
 .card {
   background: #fff;
   border: 1px solid var(--slate-200);
   border-radius: 14px;
   padding: 1.5rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
   transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
 }
 .card h3 {
